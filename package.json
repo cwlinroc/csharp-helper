@@ -1,99 +1,102 @@
 {
-	"name": "csharp-helper",
-	"displayName": "C# Helper",
-	"description": "Helper functions to speed up C# development.",
-	"publisher": "roadsidejesus",
-	"repository": {
-		"url": "https://github.com/sharklasers996/csharp-helper"
-	},
-	"version": "0.0.14",
-	"icon": "icon.png",
-	"engines": {
-		"vscode": "^1.43.0"
-	},
-	"categories": [
-		"Programming Languages",
-		"Other",
-		"Snippets"
-	],
-	"keywords": [
-		"C#",
-		"csharp",
-		".NET",
-		".NET Core",
-		"dotnet",
-		"aspnet",
-		"refactor",
-		"namespace"
-	],
-	"activationEvents": [
-		"onCommand:csharp-helper.inject-dependency",
-		"onCommand:csharp-helper.create-class",
-		"onCommand:csharp-helper.create-interface",
-		"onCommand:csharp-helper.create-enum",
-		"onCommand:csharp-helper.create-test",
-		"onCommand:csharp-helper.embed-code",
-		"onCommand:csharp-helper.fix-namespace",
-		"onCommand:csharp-helper.toggle-method-sync",
-		"onCommand:csharp-helper.fix-filename"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "csharp-helper.inject-dependency",
-				"title": "Inject Dependency (C#)"
-			},
-			{
-				"command": "csharp-helper.create-class",
-				"title": "Create New Class (C#)"
-			},
-			{
-				"command": "csharp-helper.create-interface",
-				"title": "Create New Interface (C#)"
-			},
-			{
-				"command": "csharp-helper.create-enum",
-				"title": "Create New Enum (C#)"
-			},
-			{
-				"command": "csharp-helper.create-test",
-				"title": "Create New Test Class (C#)"
-			},
-			{
-				"command": "csharp-helper.embed-code",
-				"title": "Embed Selection Into a Code Block (C#)"
-			},
-			{
-				"command": "csharp-helper.fix-namespace",
-				"title": "Fix Namespace (C#)"
-			},
-			{
-				"command": "csharp-helper.toggle-method-sync",
-				"title": "Toggle Method Sync (C#)"
-			},
-			{
-				"command": "csharp-helper.fix-filename",
-				"title": "Fix Filename (C#)"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/mocha": "^5.2.7",
-		"@types/node": "^12.11.7",
-		"@types/vscode": "^1.43.0",
-		"glob": "^7.1.6",
-		"mocha": "^6.2.2",
-		"tslint": "^5.20.0",
-		"typescript": "^3.6.4",
-		"vscode-test": "^1.2.2"
-	}
+    "name": "csharp-helper",
+    "displayName": "C# Helper",
+    "description": "Helper functions to speed up C# development.",
+    "publisher": "roadsidejesus",
+    "repository": {
+        "url": "https://github.com/sharklasers996/csharp-helper"
+    },
+    "version": "0.0.14",
+    "icon": "icon.png",
+    "engines": {
+        "vscode": "^1.92.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Other",
+        "Snippets"
+    ],
+    "keywords": [
+        "C#",
+        "csharp",
+        ".NET",
+        ".NET Core",
+        "dotnet",
+        "aspnet",
+        "refactor",
+        "namespace"
+    ],
+    "activationEvents": [
+        "onCommand:csharp-helper.inject-dependency",
+        "onCommand:csharp-helper.create-class",
+        "onCommand:csharp-helper.create-interface",
+        "onCommand:csharp-helper.create-enum",
+        "onCommand:csharp-helper.create-test",
+        "onCommand:csharp-helper.embed-code",
+        "onCommand:csharp-helper.fix-namespace",
+        "onCommand:csharp-helper.toggle-method-sync",
+        "onCommand:csharp-helper.fix-filename"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "csharp-helper.inject-dependency",
+                "title": "Inject Dependency (C#)"
+            },
+            {
+                "command": "csharp-helper.create-class",
+                "title": "Create New Class (C#)"
+            },
+            {
+                "command": "csharp-helper.create-interface",
+                "title": "Create New Interface (C#)"
+            },
+            {
+                "command": "csharp-helper.create-enum",
+                "title": "Create New Enum (C#)"
+            },
+            {
+                "command": "csharp-helper.create-test",
+                "title": "Create New Test Class (C#)"
+            },
+            {
+                "command": "csharp-helper.embed-code",
+                "title": "Embed Selection Into a Code Block (C#)"
+            },
+            {
+                "command": "csharp-helper.fix-namespace",
+                "title": "Fix Namespace (C#)"
+            },
+            {
+                "command": "csharp-helper.toggle-method-sync",
+                "title": "Toggle Method Sync (C#)"
+            },
+            {
+                "command": "csharp-helper.fix-filename",
+                "title": "Fix Filename (C#)"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "vscode-test"
+    },
+    "devDependencies": {
+        "@types/mocha": "^10.0.7",
+        "@types/node": "20.x",
+        "@types/vscode": "^1.92.0",
+        "@typescript-eslint/eslint-plugin": "^7.14.1",
+        "@typescript-eslint/parser": "^7.11.0",
+        "@vscode/test-cli": "^0.0.9",
+        "@vscode/test-electron": "^2.4.0",
+        "eslint": "^8.57.0",
+        "glob": "^11.0.0",
+        "mocha": "^10.7.3",
+        "typescript": "^5.4.5"
+    }
 }
