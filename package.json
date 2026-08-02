@@ -1,69 +1,24 @@
 {
     "name": "csharp-helper",
     "displayName": "C# Helper",
-    "description": "Helper functions to speed up C# development.",
-    "publisher": "roadsidejesus",
+    "description": "small features to help vscode csharp desing",
+    "version": "0.0.1",
     "repository": {
-        "url": "https://github.com/sharklasers996/csharp-helper"
+        "type": "git",
+        "url": "https://github.com/cwlinroc/csharp-helper"
     },
-    "version": "0.0.14",
-    "icon": "icon.png",
+    "license": "MIT",
+    "publisher": "cwlinroc",
     "engines": {
-        "vscode": "^1.92.0"
+        "vscode": "^1.100.0"
     },
     "categories": [
-        "Programming Languages",
-        "Other",
-        "Snippets"
+        "Other"
     ],
-    "keywords": [
-        "C#",
-        "csharp",
-        ".NET",
-        ".NET Core",
-        "dotnet",
-        "aspnet",
-        "refactor",
-        "namespace"
-    ],
-    "activationEvents": [
-        "onCommand:csharp-helper.inject-dependency",
-        "onCommand:csharp-helper.create-class",
-        "onCommand:csharp-helper.create-interface",
-        "onCommand:csharp-helper.create-enum",
-        "onCommand:csharp-helper.create-test",
-        "onCommand:csharp-helper.embed-code",
-        "onCommand:csharp-helper.fix-namespace",
-        "onCommand:csharp-helper.toggle-method-sync",
-        "onCommand:csharp-helper.fix-filename"
-    ],
-    "main": "./out/extension.js",
+    "activationEvents": [],
+    "main": "./dist/extension.js",
     "contributes": {
         "commands": [
-            {
-                "command": "csharp-helper.inject-dependency",
-                "title": "Inject Dependency (C#)"
-            },
-            {
-                "command": "csharp-helper.create-class",
-                "title": "Create New Class (C#)"
-            },
-            {
-                "command": "csharp-helper.create-interface",
-                "title": "Create New Interface (C#)"
-            },
-            {
-                "command": "csharp-helper.create-enum",
-                "title": "Create New Enum (C#)"
-            },
-            {
-                "command": "csharp-helper.create-test",
-                "title": "Create New Test Class (C#)"
-            },
-            {
-                "command": "csharp-helper.embed-code",
-                "title": "Embed Selection Into a Code Block (C#)"
-            },
             {
                 "command": "csharp-helper.fix-namespace",
                 "title": "Fix Namespace (C#)"
@@ -75,28 +30,59 @@
             {
                 "command": "csharp-helper.fix-filename",
                 "title": "Fix Filename (C#)"
+            },
+            {
+                "command": "csharp-helper.create-class-template",
+                "title": "Create Class Template (C#)"
+            },
+            {
+                "command": "csharp-helper.create-interface-template",
+                "title": "Create Interface Template (C#)"
+            },
+            {
+                "command": "csharp-helper.create-enum-template",
+                "title": "Create Enum Template (C#)"
+            },
+            {
+                "command": "csharp-helper.create-struct-template",
+                "title": "Create Struct Template (C#)"
+            },
+            {
+                "command": "csharp-helper.create-record-template",
+                "title": "Create Record Template (C#)"
+            },
+            {
+                "command": "csharp-helper.create-razor-page",
+                "title": "Create Razor Page (C#)"
             }
         ]
     },
     "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "pretest": "npm run compile && npm run lint",
-        "lint": "eslint src --ext ts",
+        "vscode:prepublish": "pnpm run package",
+        "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
+        "watch": "npm-run-all -p watch:*",
+        "watch:esbuild": "node esbuild.js --watch",
+        "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+        "package": "pnpm run check-types && pnpm run lint && node esbuild.js --production",
+        "self-host": "npx @vscode/vsce package --no-dependencies",
+        "compile-tests": "tsc -p . --outDir out",
+        "watch-tests": "tsc -p . -w --outDir out",
+        "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+        "check-types": "tsc --noEmit",
+        "lint": "eslint src",
         "test": "vscode-test"
     },
     "devDependencies": {
-        "@types/mocha": "^10.0.7",
-        "@types/node": "20.x",
-        "@types/vscode": "^1.92.0",
-        "@typescript-eslint/eslint-plugin": "^7.14.1",
-        "@typescript-eslint/parser": "^7.11.0",
-        "@vscode/test-cli": "^0.0.9",
-        "@vscode/test-electron": "^2.4.0",
-        "eslint": "^8.57.0",
-        "glob": "^11.0.0",
-        "mocha": "^10.7.3",
-        "typescript": "^5.4.5"
-    }
+        "@types/mocha": "10.0.10",
+        "@types/node": "25.6.0",
+        "@types/vscode": "1.100.0",
+        "@vscode/test-cli": "0.0.12",
+        "@vscode/test-electron": "2.5.2",
+        "esbuild": "0.28.0",
+        "eslint": "10.2.0",
+        "npm-run-all2": "^8.0.4",
+        "typescript": "6.0.2",
+        "typescript-eslint": "8.58.1"
+    },
+    "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319"
 }
