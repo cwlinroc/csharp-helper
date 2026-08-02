@@ -9,6 +9,12 @@ if [ -f "$extension_name" ]; then
     rm "$extension_name"
 fi
 
+echo "installing packages"
+pnpm install --frozen-lockfile
+
+echo "Building extension..."
+pnpm run compile
+
 echo "Packaging extension..."
 npx @vscode/vsce package --no-dependencies
 if [ $? -ne 0 ]; then
